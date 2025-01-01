@@ -1,0 +1,35 @@
+.root {
+  width: 100%;
+  border-top: 2px solid var(--theme-text);
+  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 2ch;
+  margin-top: auto;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 64ch;
+  margin: 0 auto;
+}
+
+.companyName {
+  font-family: 'Geist-Mono-Regular', monospace;
+}
+
+.socials {
+  display: flex;
+  gap: 1ch;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  padding: 0.5ch;
+  
+  &:hover {
+    background: var(--theme-focused-foreground);
+  }
+} 
