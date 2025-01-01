@@ -56,6 +56,7 @@ import TextArea from '@components/TextArea';
 import TooltipTrigger from '@components/TooltipTrigger';
 import TreeView from '@components/TreeView';
 import UpdatingDataTable from '@components/examples/UpdatingDataTable';
+import Footer from '@components/Footer';
 
 export const dynamic = 'force-static';
 
@@ -126,6 +127,7 @@ export default async function Page(props) {
         </ActionListItem>
       </Grid>
       <ModalStack />
+      <Footer companyName="Starsof AR" />
     </DefaultLayout>
   );
 }
