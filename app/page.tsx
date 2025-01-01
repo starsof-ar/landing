@@ -57,7 +57,8 @@ import TooltipTrigger from '@components/TooltipTrigger';
 import TreeView from '@components/TreeView';
 import UpdatingDataTable from '@components/examples/UpdatingDataTable';
 import Footer from '@components/Footer';
-
+import Hero from '@components/Hero';
+import Navigation from '@components/Navigation_updated';
 export const dynamic = 'force-static';
 
 export async function generateMetadata({ params, searchParams }) {
@@ -110,14 +111,38 @@ export default async function Page(props) {
   return (
     <DefaultLayout previewPixelSRC="https://intdev-global.s3.us-west-2.amazonaws.com/template-app-icon.png">
       <br />
+      <Navigation
+        logo="✶"
+        logoRightAligned={true}
+        right={
+          <>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>GO TO MAP</ActionButton>
+            </ModalTrigger>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>SIGN IN</ActionButton>
+            </ModalTrigger>
+          </>
+        }
+      >
+      </Navigation>
+
+      <DebugGrid /> {/* This is the grid that shows the layout of the page */}
+      <DefaultActionBar />
+      <Hero />
+
+
       <Grid>
+        
         <Row>
           {Package.name.toUpperCase()} <Badge>Version {Package.version}</Badge>
         </Row>
         <Row>{Package.description}</Row>
       </Grid>
-      <DebugGrid /> {/* This is the grid that shows the layout of the page */}
-      <DefaultActionBar />
+
+            
+
+
       <Card title="LOADING" centered glow>
             <BarLoader intervalRate={1000} />
       </Card>
@@ -126,8 +151,12 @@ export default async function Page(props) {
           View the source code
         </ActionListItem>
       </Grid>
+
+
+
       <ModalStack />
       <Footer companyName="Starsof AR" />
+      
     </DefaultLayout>
   );
 }

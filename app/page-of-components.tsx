@@ -690,7 +690,7 @@ const SAMPLE_TABLE_DATA_CHANGE_ME = [
               ]}
             />
             <br />
-            <Input autoComplete="off" label="USERNAME" placeholder="Choose a username (e.g., SurfGirl29)" name="test_username" />
+            <Input autoComplete="off" label="USERNAME" placeholder="Choose a username (e.g., Goonboy05)" name="test_username" />
             <Input autoComplete="off" label="PASSWORD" placeholder="Create a password (8+ characters)" type="password" name="test_password" />
             <Input autoComplete="off" label="CONFIRM" placeholder="Type it again" type="password" name="test_confirm" />
             <br />

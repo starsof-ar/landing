@@ -1,0 +1,15 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh; // Adjust height as needed
+  background: linear-gradient(to bottom, transparent 0%, var(--theme-background) 100%);
+  color: var(--theme-text); // Use theme variable for text color
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem; // Adjust font size as needed
+  font-weight: bold;
+  font-family: 'Geist-Mono-Regular', monospace; // Use your preferred font
+} 
