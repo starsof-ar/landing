@@ -97,20 +97,24 @@ export default function Page(props) {
         <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
 
           <Carousel
-            placeholder="https://picsum.photos/1920/1080"
+            placeholder="https://picsum.photos/seed/1/1920/1080"
             images={[
               {
                 src: "https://picsum.photos/seed/1/1920/1080",
                 alt: "Placeholder image 1",
               },
               {
-                src: "https://picsum.photos/seed/2/1920/1080",
-                alt: "Placeholder image 2", 
+                src: "https://picsum.photos/seed/13/1920/1080",
+                alt: "Placeholder image 13",
               },
               {
-                src: "https://picsum.photos/seed/3/1920/1080",
-                alt: "Placeholder image 3",
+                src: "https://picsum.photos/seed/8/1920/1080",
+                alt: "Placeholder image 8",
               },
+              {
+                src: "https://picsum.photos/seed/9/1920/1080",
+                alt: "Placeholder image 9",
+              }
             ]}
             width={1920}
             height={1080}

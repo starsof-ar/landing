@@ -51,9 +51,9 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
   const placeholderRef = useRef();
   const initSwipeX = useRef();
 
-  const currentImageAlt = `Slide ${imageIndex + 1} of ${images.length}. ${
-    images[imageIndex].alt
-  }`;
+  const currentImageAlt = images && images[imageIndex] 
+    ? `Slide ${imageIndex + 1} of ${images.length}. ${images[imageIndex].alt}`
+    : 'Loading carousel...';
 
   useEffect(() => {
     if (dragging) {
@@ -347,6 +347,18 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
         break;
     }
   };
+//auto advance effect
+  useEffect(() => {
+    if (!loaded || !images?.length) return;
+    
+    const timer = setInterval(() => {
+      if (!animating.current) {
+        navigate({ direction: 1 });
+      }
+    }, 2000);
+
+    return () => clearInterval(timer);
+  }, [loaded, images, navigate]);
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
@@ -379,7 +391,7 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
             />
           )}
         </div>
-        <button
+        {/* <button
           className={styles.button}
           data-prev={true}
           aria-label="Previous slide"
@@ -405,7 +417,7 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
             aria-label={`Jump to slide ${index + 1}`}
             aria-pressed={index === imageIndex}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );
