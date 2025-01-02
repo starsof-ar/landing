@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import ModalTrigger from '@components/ModalTrigger';
 import ActionButton from '@components/ActionButton';
 import ModalCreateAccount from '@components/modals/ModalCreateAccount';
+import Link from 'next/link';
 
 interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
@@ -38,9 +39,9 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
       case '/faqs':
         return (
           <>
-            <ModalTrigger modal={ModalCreateAccount}>
+            <Link href="/">
               <ActionButton>GO BACK</ActionButton>
-            </ModalTrigger>
+            </Link>
             <ModalTrigger modal={ModalCreateAccount}>
               <ActionButton>GO TO MAP</ActionButton>
             </ModalTrigger>
