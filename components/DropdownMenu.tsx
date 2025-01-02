@@ -3,7 +3,7 @@ import styles from '@components/DropdownMenu.module.scss';
 import * as React from 'react';
 
 import ActionButton from '@components/ActionButton';
-import ActionListItem from '@components/ActionListItem';
+import ActionListItem from '@components/ActionListItem-updated';
 
 import { useHotkeys } from '@modules/hotkeys';
 
