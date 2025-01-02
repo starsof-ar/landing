@@ -1,3 +1,5 @@
+'use client';
+
 import '@root/global.scss';
 
 import * as Constants from '@common/constants';
@@ -59,104 +61,90 @@ import UpdatingDataTable from '@components/examples/UpdatingDataTable';
 import Footer from '@components/Footer';
 import Hero from '@components/Hero';
 import Navigation from '@components/Navigation_updated';
-export const dynamic = 'force-static';
+import { lazy, Suspense } from 'react';
+import { ModalProvider } from '@components/page/ModalContext';
+const Carousel = lazy(() =>
+  import('@components/carousel').then(module => ({ default: module.Carousel }))
+);
 
-export async function generateMetadata({ params, searchParams }) {
-  const title = Package.name;
-  const description = Package.description;
-  const url = 'https://FIXME';
-  const handle = '@intstudio';
-
-  return {
-    description,
-    icons: {
-      apple: [{ url: '/apple-touch-icon.png' }, { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
-      icon: '/favicon-32x32.png',
-      other: [
-        {
-          rel: 'apple-touch-icon-precomposed',
-          url: '/apple-touch-icon-precomposed.png',
-        },
-      ],
-      shortcut: '/favicon-16x16.png',
-    },
-    metadataBase: new URL('https://wireframes.internet.dev'),
-    openGraph: {
-      description,
-      images: [
-        {
-          url: 'https://next-s3-public.s3.us-west-2.amazonaws.com/social/social-sacred-computer.png',
-          width: 1500,
-          height: 785,
-        },
-      ],
-      title,
-      type: 'website',
-      url,
-    },
-    title,
-    twitter: {
-      card: 'summary_large_image',
-      description,
-      handle,
-      images: ['https://next-s3-public.s3.us-west-2.amazonaws.com/social/social-sacred-computer.png'],
-      title,
-      url,
-    },
-    url,
-  };
-}
-
-export default async function Page(props) {
+export default function Page(props) {
   return (
+
     <DefaultLayout previewPixelSRC="https://intdev-global.s3.us-west-2.amazonaws.com/template-app-icon.png">
-      <br />
-      <Navigation
-        logo="✶"
-        logoRightAligned={true}
-        right={
-          <>
-            <ModalTrigger modal={ModalCreateAccount}>
-              <ActionButton>GO TO MAP</ActionButton>
-            </ModalTrigger>
-            <ModalTrigger modal={ModalCreateAccount}>
-              <ActionButton>SIGN IN</ActionButton>
-            </ModalTrigger>
-          </>
-        }
-      >
-      </Navigation>
+      <Suspense fallback={<div>Loading...</div>}>
+        <br />
+        <Navigation
+          logo="✶"
+          logoRightAligned={true}
+          right={
+            <>
+              <ModalTrigger modal={ModalCreateAccount}>
+                <ActionButton>GO TO MAP</ActionButton>
+              </ModalTrigger>
+              <ModalTrigger modal={ModalCreateAccount}>
+                <ActionButton>SIGN IN</ActionButton>
+              </ModalTrigger>
+            </>
+          }
+        >
+        </Navigation>
 
-      <DebugGrid /> {/* This is the grid that shows the layout of the page */}
-      <DefaultActionBar />
-      <Hero />
+        <DebugGrid /> {/* This is the grid that shows the layout of the page */}
+        <DefaultActionBar />
+        <Hero />
 
 
-      <Grid>
+        <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
+
+          <Carousel
+            placeholder="https://picsum.photos/1920/1080"
+            images={[
+              {
+                src: "https://picsum.photos/seed/1/1920/1080",
+                alt: "Placeholder image 1",
+              },
+              {
+                src: "https://picsum.photos/seed/2/1920/1080",
+                alt: "Placeholder image 2", 
+              },
+              {
+                src: "https://picsum.photos/seed/3/1920/1080",
+                alt: "Placeholder image 3",
+              },
+            ]}
+            width={1920}
+            height={1080}
+          />
+        </Card>
+
+
+        <Grid>
+          
+          <Row>
+            {Package.name.toUpperCase()} <Badge>Version {Package.version}</Badge>
+          </Row>
+          <Row>{Package.description}</Row>
+        </Grid>
+
+              
+
+
+        <Card title="LOADING" centered glow>
+              <BarLoader intervalRate={1000} />
+        </Card>
+        <Grid>
+          <ActionListItem icon={`⭢`} href="https://github.com/starsof-ar/landing" target="_blank">
+            View the source code
+          </ActionListItem>
+        </Grid>
+
+
+
+        <ModalStack />
+        <Footer companyName="Starsof AR" />
         
-        <Row>
-          {Package.name.toUpperCase()} <Badge>Version {Package.version}</Badge>
-        </Row>
-        <Row>{Package.description}</Row>
-      </Grid>
-
-            
-
-
-      <Card title="LOADING" centered glow>
-            <BarLoader intervalRate={1000} />
-      </Card>
-      <Grid>
-        <ActionListItem icon={`⭢`} href="https://github.com/starsof-ar/landing" target="_blank">
-          View the source code
-        </ActionListItem>
-      </Grid>
-
-
-
-      <ModalStack />
-      <Footer companyName="Starsof AR" />
-      
+      </Suspense>
     </DefaultLayout>
+
   );
 }

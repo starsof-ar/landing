@@ -9,9 +9,10 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   mode?: string | any;
   centered?: boolean;
   glow?: boolean;
+  maxWidth?: string;
 }
 
-const Card: React.FC<CardProps> = ({ children, mode, title, centered, glow, ...rest }) => {
+const Card: React.FC<CardProps> = ({ children, mode, title, centered, glow, maxWidth, ...rest }) => {
   let titleElement = (
     <header className={styles.action}>
       <div className={styles.left} aria-hidden="true"></div>
@@ -41,7 +42,10 @@ const Card: React.FC<CardProps> = ({ children, mode, title, centered, glow, ...r
   }
 
   const cardContent = (
-    <article className={`${styles.card} ${glow ? styles.glow : ''}`}>
+    <article
+      className={`${styles.card} ${glow ? styles.glow : ''}`}
+      style={{ maxWidth }}
+    >
       {titleElement}
       <section className={styles.children}>{children}</section>
     </article>
