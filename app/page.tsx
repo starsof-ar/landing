@@ -63,86 +63,55 @@ import Hero from '@components/Hero';
 import Navigation from '@components/Navigation_updated';
 import { lazy, Suspense } from 'react';
 import { ModalProvider } from '@components/page/ModalContext';
+
 const Carousel = lazy(() =>
   import('@components/carousel').then(module => ({ default: module.Carousel }))
 );
 
 export default function Page(props) {
   return (
+    <>
 
-    <DefaultLayout previewPixelSRC="https://intdev-global.s3.us-west-2.amazonaws.com/template-app-icon.png">
-      <Suspense fallback={<div>Loading...</div>}>
-        <br />
-        <Navigation
-          logo="✶"
-          logoRightAligned={true}
-          right={
-            <>
-              <ModalTrigger modal={ModalCreateAccount}>
-                <ActionButton>GO TO MAP</ActionButton>
-              </ModalTrigger>
-              <ModalTrigger modal={ModalCreateAccount}>
-                <ActionButton>SIGN IN</ActionButton>
-              </ModalTrigger>
-            </>
-          }
-        >
-        </Navigation>
+      <Hero word="AUGMENT" />
 
-        <DebugGrid /> {/* This is the grid that shows the layout of the page */}
-        <DefaultActionBar />
-        <Hero />
+      <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
+        <Carousel
+          placeholder="https://picsum.photos/seed/1/1920/1080"
+          images={[
+            {
+              src: "https://picsum.photos/seed/1/1920/1080",
+              alt: "Placeholder image 1",
+            },
+            {
+              src: "https://picsum.photos/seed/13/1920/1080", 
+              alt: "Placeholder image 13",
+            },
+            {
+              src: "https://picsum.photos/seed/8/1920/1080",
+              alt: "Placeholder image 8",
+            },
+            {
+              src: "https://picsum.photos/seed/9/1920/1080",
+              alt: "Placeholder image 9",
+            }
+          ]}
+          width={1920}
+          height={1080}
+        />
+      </Card>
 
+      <Card title="LOADING" centered glow>
+        <BarLoader intervalRate={1000} />
+      </Card>
 
-        <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
-
-          <Carousel
-            placeholder="https://picsum.photos/seed/1/1920/1080"
-            images={[
-              {
-                src: "https://picsum.photos/seed/1/1920/1080",
-                alt: "Placeholder image 1",
-              },
-              {
-                src: "https://picsum.photos/seed/13/1920/1080",
-                alt: "Placeholder image 13",
-              },
-              {
-                src: "https://picsum.photos/seed/8/1920/1080",
-                alt: "Placeholder image 8",
-              },
-              {
-                src: "https://picsum.photos/seed/9/1920/1080",
-                alt: "Placeholder image 9",
-              }
-            ]}
-            width={1920}
-            height={1080}
-          />
-        </Card>
-
-              
-
-
-        <Card title="LOADING" centered glow >
-              <BarLoader intervalRate={1000} />
-        </Card>
-
-
-
-
-
-
-        <ModalStack />
-        <Grid>
-          <Row>
-            <Card title="Footer" mode="right" glow>
-              <Footer companyName="Starsof AR" packageVersion={Package.version}/>
-            </Card>
-          </Row>
-        </Grid>
-      </Suspense>
-    </DefaultLayout>
-
+      <ModalStack />
+      <Grid>
+        <Row>
+          <Card title="Footer" mode="right" glow>
+            <Footer companyName="Starsof AR" packageVersion={Package.version} />
+          </Card>
+        </Row>
+      </Grid>
+    </>
   );
 }

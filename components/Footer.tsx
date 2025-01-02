@@ -4,6 +4,7 @@ import Badge from '@components/Badge';
 import Grid from '@components/Grid';
 import Row from '@components/Row';
 import ActionListItem from '@components/ActionListItem-updated';
+import Link from 'next/link';
 
 export default function Footer({ companyName = 'Company Name', packageVersion = '1.0.0' }) {
   const socialLinks = [
@@ -46,17 +47,17 @@ export default function Footer({ companyName = 'Company Name', packageVersion = 
             <div className={`${styles.column} ${styles.secondary}`}>
               <div className={styles.columnTitle}>Company</div>
               <ul className={styles.links}>
-                <li><a href="/about">About</a></li>
-                <li><a href="/careers">Careers</a></li>
-                <li><a href="/news">News</a></li>
-                <li><a href="/press">Press</a></li>
+                <li><Link href="/about">About</Link></li>
+                <li><Link href="/careers">Careers</Link></li>
+                <li><Link href="/news">News</Link></li>
+                <li><Link href="/press">Press</Link></li>
               </ul>
             </div>
 
             <div className={`${styles.column} ${styles.secondary}`}>
               <div className={styles.columnTitle}>Product</div>
               <ul className={styles.links}>
-                <li><a href="/map">WebXR App (map)</a>
+                <li><Link href="/map">WebXR App (map)</Link>
                 <ActionListItem 
                   icon={`⭢`} 
                   href="https://github.com/starsof-ar/landing" 
@@ -67,7 +68,7 @@ export default function Footer({ companyName = 'Company Name', packageVersion = 
                   source code
                 </ActionListItem>
                 </li>
-                <li><a href="/map">Developer Portal</a>
+                <li><Link href="/map">Developer Portal</Link>
                 <ActionListItem 
                   icon={`⭢`} 
                   href="https://github.com/starsof-ar/landing" 
@@ -85,10 +86,10 @@ export default function Footer({ companyName = 'Company Name', packageVersion = 
             <div className={`${styles.column} ${styles.secondary}`}>
               <div className={styles.columnTitle}>Resources</div>
               <ul className={styles.links}>
-                <li><a href="/faqs">FAQs</a></li>
-                <li><a href="/support">Support</a></li>
-                <li><a href="/privacy">Privacy Policy</a></li>
-                <li><a href="/terms">Terms of Service</a></li>
+                  <li><Link href="/faqs">FAQs</Link></li>
+                  <li><Link href="/support">Support</Link></li>
+                  <li><Link href="/privacy">Privacy Policy</Link></li>
+                  <li><Link href="/terms">Terms of Service</Link></li>
               </ul>
             </div>
           </div>
