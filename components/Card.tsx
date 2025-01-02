@@ -13,6 +13,19 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card: React.FC<CardProps> = ({ children, mode, title, centered, glow, maxWidth, ...rest }) => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   let titleElement = (
     <header className={styles.action}>
       <div className={styles.left} aria-hidden="true"></div>
@@ -44,7 +57,7 @@ const Card: React.FC<CardProps> = ({ children, mode, title, centered, glow, maxW
   const cardContent = (
     <article
       className={`${styles.card} ${glow ? styles.glow : ''}`}
-      style={{ maxWidth }}
+      style={{ maxWidth: isMobile ? '95vw' : maxWidth }}
     >
       {titleElement}
       <section className={styles.children}>{children}</section>

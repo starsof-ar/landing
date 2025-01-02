@@ -39,7 +39,7 @@ const ActionListItem: React.FC<ActionListItemProps> = (props) => {
   };
 
   const iconAnimation = {
-    x: isHovered ? containerWidth - 22 : 0,
+    x: isHovered ? containerWidth + 100: 0,
     backgroundColor: isHovered 
       ? ['var(--theme-button-foreground)', 'var(--theme-focused-foreground)']
       : 'var(--theme-button-foreground)',
