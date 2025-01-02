@@ -5,10 +5,10 @@
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .column {
@@ -18,6 +18,14 @@
 
   &.secondary {
     width: 15%;
+  }
+
+  @media (max-width: 768px) {
+    &.main,
+    &.secondary {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
 }
 
