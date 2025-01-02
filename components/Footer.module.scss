@@ -1,35 +1,85 @@
-.root {
-  width: 100%;
-  border-top: 2px solid var(--theme-text);
-  padding: calc((var(--font-size) * 0.5) * var(--theme-line-height-base)) 2ch;
-  margin-top: auto;
+.footer {
+  padding: 4rem 2rem;
+  background: color-mix(in srgb, var(--theme-background-modal) 70%, transparent);
+  color: var(--text);
 }
 
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 64ch;
+.container {
+  max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  &.main {
+    width: 40%;
+  }
+
+  &.secondary {
+    width: 15%;
+  }
 }
 
 .companyName {
-  font-family: 'Geist-Mono-Regular', monospace;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-.socials {
+.subtitle {
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+}
+
+.columnTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    color: var(--text);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.socialLinks {
   display: flex;
-  gap: 1ch;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-.socialLink {
+.socialIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  padding: 0.5ch;
-  
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+
   &:hover {
     background: var(--theme-focused-foreground);
+    transform: translateY(-2px);
   }
-} 
+}
