@@ -65,7 +65,7 @@ export async function generateMetadata({ params, searchParams }) {
   const title = Package.name;
   const description = Package.description;
   const url = 'https://FIXME';
-  const handle = '@internetxstudio';
+  const handle = '@intstudio';
 
   return {
     description,
