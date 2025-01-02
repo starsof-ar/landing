@@ -1,5 +1,6 @@
 .root {
   white-space: nowrap;
+  position: relative;
 }
 
 .item {
@@ -14,4 +15,14 @@
 
 .empty {
   opacity: 0.5;
+}
+
+.childText {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  padding: 1rem;
+  background-color: var(--theme-focused-foreground-subdued);
+  border: 2px solid var(--theme-text);
+
 }

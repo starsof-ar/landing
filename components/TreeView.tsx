@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@components/TreeView.module.scss';
-
+import AlertBanner from '@components/AlertBanner';
 import * as React from 'react';
 
 interface TreeViewProps {
@@ -13,13 +13,14 @@ interface TreeViewProps {
   isRoot?: boolean;
   isLastChild?: boolean;
   parentLines?: boolean[];
+  answer?: string;
 }
 
-const TreeView: React.FC<TreeViewProps> = ({ defaultValue = false, title, children, depth = 0, isFile = false, isRoot = false, isLastChild = false, parentLines = [] }) => {
+const TreeView: React.FC<TreeViewProps> = ({ defaultValue = false, title, children, depth = 0, isFile = false, isRoot = false, isLastChild = false, parentLines = [], answer }) => {
   const [show, setShow] = React.useState<boolean>(defaultValue);
 
   const onToggleShow = (): void => {
-    if (!isFile) setShow((prevShow) => !prevShow);
+    setShow((prevShow) => !prevShow);
   };
 
   const hasChildren = React.Children.count(children) > 0;
@@ -39,6 +40,15 @@ const TreeView: React.FC<TreeViewProps> = ({ defaultValue = false, title, childr
         {icon}
         {title}
       </div>
+      {show && answer && (
+        <div className={styles.childText}>
+          {answer.split('\n').map((line, index) => (
+            <div key={index}>
+              {line}
+            </div>
+          ))}
+        </div>
+      )}
       {show && hasChildren && (
         <div>
           {React.Children.map(children, (child, index) =>
