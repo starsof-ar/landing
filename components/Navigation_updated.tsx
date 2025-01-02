@@ -3,6 +3,10 @@
 import styles from '@components/Navigation.module.scss';
 
 import * as React from 'react';
+import { usePathname } from 'next/navigation';
+import ModalTrigger from '@components/ModalTrigger';
+import ActionButton from '@components/ActionButton';
+import ModalCreateAccount from '@components/modals/ModalCreateAccount';
 
 interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;
@@ -13,10 +17,44 @@ interface NavigationProps extends React.HTMLAttributes<HTMLElement> {
   left?: React.ReactNode;
   right?: React.ReactNode;
   logoRightAligned?: boolean;
-
 }
 
-const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget, onClickLogo, logo, left, right, logoRightAligned=false }) => {
+const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget, onClickLogo, logo, left, right, logoRightAligned = false }) => {
+  const pathname = usePathname();
+
+  const renderModals = () => {
+    switch (pathname) {
+      case '/':
+        return (
+          <>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>GO TO MAP</ActionButton>
+            </ModalTrigger>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>SIGN IN</ActionButton>
+            </ModalTrigger>
+          </>
+        );
+      case '/faqs':
+        return (
+          <>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>GO BACK</ActionButton>
+            </ModalTrigger>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>GO TO MAP</ActionButton>
+            </ModalTrigger>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>SIGN IN</ActionButton>
+            </ModalTrigger>
+          </>
+        );
+      // Add more cases for different routes as needed
+      default:
+        return null;
+    }
+  };
+
   let logoElement = <button className={styles.logo}>{logo}</button>;
 
   if (onClickLogo) {
@@ -41,7 +79,7 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
       <section className={styles.left}>{left}</section>
       <section className={styles.children}>{children}</section>
       {logoRightAligned && logoElement}
-      <section className={styles.right}>{right}</section>
+      <section className={styles.right}>{renderModals()}</section>
     </nav>
   );
 };

@@ -16,10 +16,24 @@ import RadioButtonGroup from '@components/RadioButtonGroup';
 function ModalCreateAccount() {
   const { close } = useModals();
 
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        close();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [close]);
+
   return (
     <div className={styles.root}>
       <CardDouble title="NEW ACCOUNT">
-        Create a new MakeBelieve™ account, where anything is possible at your command line in the browser.
+        Create a new Starsof AR account, where anything is possible at your command line in the browser.
         <br />
         <br />
         <RadioButtonGroup
