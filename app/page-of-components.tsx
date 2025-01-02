@@ -6,7 +6,7 @@ import * as Utilities from '@common/utilities';
 import Accordion from '@components/Accordion';
 import ActionBar from '@components/ActionBar';
 import ActionButton from '@components/ActionButton';
-import ActionListItem from '@components/ActionListItem';
+import ActionListItem from '@components/ActionListItem-updated';
 import AlertBanner from '@components/AlertBanner';
 import Avatar from '@components/Avatar';
 import Badge from '@components/Badge';
