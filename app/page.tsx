@@ -8,7 +8,7 @@ import * as Utilities from '@common/utilities';
 import Accordion from '@components/Accordion';
 import ActionBar from '@components/ActionBar';
 import ActionButton from '@components/ActionButton';
-import ActionListItem from '@components/ActionListItem';
+import ActionListItem from '@components/ActionListItem-updated';
 import AlertBanner from '@components/AlertBanner';
 import Avatar from '@components/Avatar';
 import Badge from '@components/Badge';
@@ -121,32 +121,26 @@ export default function Page(props) {
           />
         </Card>
 
-
-        <Grid>
-          
-          <Row>
-            {Package.name.toUpperCase()} <Badge>Version {Package.version}</Badge>
-          </Row>
-          <Row>{Package.description}</Row>
-        </Grid>
-
               
 
 
-        <Card title="LOADING" centered glow>
+        <Card title="LOADING" centered glow >
               <BarLoader intervalRate={1000} />
         </Card>
-        <Grid>
-          <ActionListItem icon={`⭢`} href="https://github.com/starsof-ar/landing" target="_blank">
-            View the source code
-          </ActionListItem>
-        </Grid>
+
+
+
 
 
 
         <ModalStack />
-        <Footer companyName="Starsof AR" />
-        
+        <Grid>
+          <Row>
+            <Card title="Footer" mode="right" glow>
+              <Footer companyName="Starsof AR" packageVersion={Package.version}/>
+            </Card>
+          </Row>
+        </Grid>
       </Suspense>
     </DefaultLayout>
 
