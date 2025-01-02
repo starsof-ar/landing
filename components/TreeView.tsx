@@ -43,7 +43,7 @@ const TreeView: React.FC<TreeViewProps> = ({ defaultValue = false, title, childr
       {show && answer && (
         <div className={styles.childText}>
           {answer.split('\n').map((line, index) => (
-            <div key={index}>
+            <div key={index} className={styles.myText}>
               {line}
             </div>
           ))}
