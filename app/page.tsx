@@ -63,10 +63,16 @@ import Hero from '@components/Hero';
 import Navigation from '@components/Navigation_updated';
 import { lazy, Suspense } from 'react';
 import { ModalProvider } from '@components/page/ModalContext';
-
+import ResponsiveTextDisplay from '@components/ResponsiveTextDisplay';
 const Carousel = lazy(() =>
   import('@components/carousel').then(module => ({ default: module.Carousel }))
 );
+
+const data = {
+  text1: "Interpretability",
+  text2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  text3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+};
 
 export default function Page(props) {
   return (
@@ -100,9 +106,7 @@ export default function Page(props) {
         />
       </Card>
 
-      <Card title="LOADING" centered glow>
-        <BarLoader intervalRate={1000} />
-      </Card>
+      <ResponsiveTextDisplay data={data} />
 
       <ModalStack />
       <Grid>
