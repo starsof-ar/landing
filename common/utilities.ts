@@ -49,17 +49,17 @@ export function onHandleThemeChange() {
   const body = document.body;
 
   if (body.classList.contains('theme-light')) {
-    body.classList.replace('theme-light', 'theme-blue');
+    body.classList.replace('theme-light', 'theme-dark');
     return;
   }
 
   if (body.classList.contains('theme-dark')) {
-    body.classList.replace('theme-dark', 'theme-light');
+    body.classList.replace('theme-dark', 'theme-blue');
     return;
   }
 
   if (body.classList.contains('theme-blue')) {
-    body.classList.replace('theme-blue', 'theme-dark');
+    body.classList.replace('theme-blue', 'theme-light');
     return;
   }
 }
