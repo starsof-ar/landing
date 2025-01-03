@@ -112,7 +112,7 @@ export default function Page(props) {
       <ModalStack />
       <Grid>
         <Row>
-          <Card title="Footer" mode="right" glow>
+          <Card title="footer" mode="right" glow>
             <Footer companyName="Starsof AR" packageVersion={Package.version} />
           </Card>
         </Row>
