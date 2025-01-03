@@ -64,15 +64,16 @@ import Navigation from '@components/Navigation_updated';
 import { lazy, Suspense } from 'react';
 import { ModalProvider } from '@components/page/ModalContext';
 import ResponsiveTextDisplay from '@components/ResponsiveTextDisplay';
+import SubtitleHeader from '@components/SubtitleHeader';
+import { data } from 'app/_info/info';
+
+
+
 const Carousel = lazy(() =>
   import('@components/carousel').then(module => ({ default: module.Carousel }))
 );
 
-const data = {
-  text1: "Interpretability",
-  text2: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  text3: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-};
+
 
 export default function Page(props) {
   return (
@@ -97,7 +98,7 @@ export default function Page(props) {
               alt: "Placeholder image 8",
             },
             {
-              src: "https://picsum.photos/seed/9/1920/1080",
+              src: "/vr-midjourney.png",
               alt: "Placeholder image 9",
             }
           ]}

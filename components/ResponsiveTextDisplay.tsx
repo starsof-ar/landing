@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './ResponsiveTextDisplay.module.scss';
 
 interface ResponsiveTextDisplayProps {
-  data: { text1: string; text2: string; text3: string };
+  data: { text1: ReactNode; text2: ReactNode; text3: ReactNode };
 }
 
 const ResponsiveTextDisplay: React.FC<ResponsiveTextDisplayProps> = ({ data }) => {
