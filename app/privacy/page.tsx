@@ -8,7 +8,6 @@ import Navigation from '@components/Navigation_updated';
 export default function PrivacyPage() {
   return (
     <>
-      <Navigation />
       <Hero word="Privacy" />
       <Card title="Privacy Policy">
         <p>
