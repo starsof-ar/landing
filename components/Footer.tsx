@@ -19,7 +19,7 @@ export default function Footer({ companyName = 'Company Name', packageVersion = 
       <Grid>
         <Row>
           <div className={styles.container}>
-            <div className={`${styles.column} ${styles.main}`}>
+            <div className={`${styles.column} ${styles.main} `}>
 
               <span className={styles.companyName} >{companyName}&nbsp;</span>
               
@@ -53,7 +53,7 @@ export default function Footer({ companyName = 'Company Name', packageVersion = 
                 <li><Link href="/press">Press</Link></li>
               </ul>
             </div>
-
+            <div className={'md:w-full md:block hidden'}></div>
             <div className={`${styles.column} ${styles.secondary}`}>
               <div className={styles.columnTitle}>Product</div>
               <ul className={styles.links}>
@@ -80,7 +80,6 @@ export default function Footer({ companyName = 'Company Name', packageVersion = 
                 </ActionListItem>
                 </li>
               </ul>
-
             </div>
 
             <div className={`${styles.column} ${styles.secondary}`}>

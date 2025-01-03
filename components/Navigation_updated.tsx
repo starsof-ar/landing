@@ -37,6 +37,11 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
           </>
         );
       case '/faqs':
+      case '/privacy':
+      case '/terms':
+      case '/about':
+      case '/contact':
+      case '/support':
         return (
           <>
             <Link href="/">
