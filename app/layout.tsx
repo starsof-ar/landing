@@ -13,7 +13,7 @@ import ActionButton from '@components/ActionButton';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-us">
-      <body className="theme-dark">
+      <body className="theme-light">
         <Providers>
           <DefaultLayout previewPixelSRC="https://intdev-global.s3.us-west-2.amazonaws.com/template-app-icon.png">
             <Suspense fallback={<div>Loading...</div>}>
