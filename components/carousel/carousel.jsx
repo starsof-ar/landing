@@ -390,8 +390,8 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
               role="presentation"
             />
           )}
-        </div>
-        {/* <button
+        </div>{/*
+        <button
           className={styles.button}
           data-prev={true}
           aria-label="Previous slide"
@@ -407,8 +407,8 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
         >
           <ArrowRight />
         </button>
-      </div>
-      <div className={styles.nav}>
+      
+       <div className={styles.nav}>
         {images.map((image, index) => (
           <button
             className={styles.navButton}
@@ -417,7 +417,8 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
             aria-label={`Jump to slide ${index + 1}`}
             aria-pressed={index === imageIndex}
           />
-        ))} */}
+        ))}
+      </div> */}
       </div>
     </div>
   );
