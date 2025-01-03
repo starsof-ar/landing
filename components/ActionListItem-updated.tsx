@@ -67,7 +67,7 @@ const ActionListItem: React.FC<ActionListItemProps> = (props) => {
   const IconWrapper = animate ? motion.figure : 'figure';
   const TextWrapper = animate ? motion.span : 'span';
 
-  const defaultStyle = { maxWidth: containerWidth, ...style };
+  const defaultStyle = { maxWidth: '140px', ...style };
 
   if (href) {
     return (
