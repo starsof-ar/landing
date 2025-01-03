@@ -70,7 +70,7 @@ import { data } from 'app/_info/info';
 
 
 const Carousel = lazy(() =>
-  import('@components/carousel').then(module => ({ default: module.Carousel }))
+  import('@components/carousel/carousel').then(module => ({ default: module.Carousel }))
 );
 
 
