@@ -39,7 +39,7 @@ const ActionListItem: React.FC<ActionListItemProps> = (props) => {
   };
 
   const iconAnimation = {
-    x: isHovered ? containerWidth + 100: 0,
+    x: isHovered ? containerWidth + containerWidth/10 : 0,
     backgroundColor: isHovered 
       ? ['var(--theme-button-foreground)', 'var(--theme-focused-foreground)']
       : 'var(--theme-button-foreground)',
@@ -67,6 +67,8 @@ const ActionListItem: React.FC<ActionListItemProps> = (props) => {
   const IconWrapper = animate ? motion.figure : 'figure';
   const TextWrapper = animate ? motion.span : 'span';
 
+  const defaultStyle = { maxWidth: containerWidth, ...style };
+
   if (href) {
     return (
       <a 
@@ -74,7 +76,7 @@ const ActionListItem: React.FC<ActionListItemProps> = (props) => {
         className={styles.item} 
         href={href} 
         target={target} 
-        style={style} 
+        style={defaultStyle} 
         tabIndex={0} 
         role="link" 
         onMouseEnter={handleMouseEnter}
@@ -104,7 +106,7 @@ const ActionListItem: React.FC<ActionListItemProps> = (props) => {
       ref={divRef}
       className={styles.item} 
       onClick={onClick} 
-      style={style} 
+      style={defaultStyle} 
       tabIndex={0} 
       role="button"
       onMouseEnter={handleMouseEnter}
