@@ -358,3 +358,15 @@ body {
     background: var(--theme-border);
   }
 }
+
+
+/* Global text selection styles */
+::selection {
+  background-color: var(--theme-focused-foreground);
+  color: var(--theme-text);
+}
+
+::-moz-selection {
+  background-color: var(--theme-focused-foreground);
+  color: var(--theme-text);
+}

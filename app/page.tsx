@@ -68,7 +68,7 @@ import SubtitleHeader from '@components/SubtitleHeader';
 import { data } from 'app/_info/info';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import styles from './page.module.css';
-
+import { SuperimposedHero } from '@components/superimposed-hero/superimposed-hero';
 
 
 const Carousel = lazy(() =>
@@ -78,10 +78,7 @@ const Carousel = lazy(() =>
 
 
 const carouselImages = [
-  {
-    src: "/vr-midjourney.png",
-    alt: "Placeholder image 9",
-  },
+
   {
     src: "https://picsum.photos/seed/1/1920/900",
     alt: "Placeholder image 1", 
@@ -94,6 +91,10 @@ const carouselImages = [
     src: "https://picsum.photos/seed/8/1920/900",
     alt: "Placeholder image 8",
   },
+  {
+    src: "/vr-midjourney.png",
+    alt: "Placeholder image 9",
+  }
 ];
 
 
@@ -118,6 +119,7 @@ export default function Page(props) {
       )}
 
       <Hero word="STARSOF AR" />
+      <SuperimposedHero />
 
        {isDesktop && (
         <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
