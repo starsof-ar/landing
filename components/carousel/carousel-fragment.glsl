@@ -6,6 +6,7 @@ uniform float direction;
 uniform bool reduceMotion;
 uniform bool fadeBottom;
 uniform vec4 themeBackground;
+uniform float initialFade;
 
 void main() {
   vec4 _currentImage;
@@ -37,5 +38,6 @@ void main() {
   if (fadeBottom) {
     finalTexture.rgb = mix(themeBackground.rgb, finalTexture.rgb, vUv.y);
   }
+  finalTexture.a *= initialFade;
   gl_FragColor = finalTexture;
 }

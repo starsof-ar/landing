@@ -13,7 +13,7 @@ import ActionButton from '@components/ActionButton';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-us">
-      <body className="theme-light">
+      <body className="theme-dark">
         <Providers>
           <DefaultLayout previewPixelSRC="https://intdev-global.s3.us-west-2.amazonaws.com/template-app-icon.png">
             <Suspense fallback={<div>Loading...</div>}>
@@ -26,13 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 right={
                   <>
                     <ModalTrigger modal={ModalCreateAccount}>
-                      <ActionButton>GO TO STUDIO</ActionButton>
+                      <ActionButton>STUDIO</ActionButton>
                     </ModalTrigger>
                     <ModalTrigger modal={ModalCreateAccount}>
-                      <ActionButton>GO TO MAP</ActionButton>
+                      <ActionButton>MAP</ActionButton>
                     </ModalTrigger>
                     <ModalTrigger modal={ModalCreateAccount}>
-                      <ActionButton>SIGN IN</ActionButton>
+                      <ActionButton>ACCOUNT</ActionButton>
                     </ModalTrigger>
                   </>
                 }

@@ -32,14 +32,14 @@ export const Carousel = ({
   images,
   width,
   height,
-  placeholder,
+  //placeholder,
   fadeBottom = true,
   ...props
 }) => {
   const [dragging, setDragging] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
-  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  //const [showPlaceholder, setShowPlaceholder] = useState(true);
   const [textures, setTextures] = useState();
   const [canvasRect, setCanvasRect] = useState();
   const canvas = useRef();
@@ -55,7 +55,7 @@ export const Carousel = ({
   const scheduledAnimationFrame = useRef();
   const reduceMotion = useReducedMotion();
   const inViewport = useInViewport(canvas, true);
-  const placeholderRef = useRef();
+  //const placeholderRef = useRef();
   const initSwipeX = useRef();
   const [isLightTheme, setIsLightTheme] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
@@ -193,6 +193,7 @@ export const Carousel = ({
           reduceMotion: { type: 'b', value: reduceMotion },
           fadeBottom: { value: fadeBottom },
           themeBackground: { value: getThemeBackgroundColor() },
+          initialFade: { type: 'f', value: 0 },
         },
         vertexShader: vertex,
         fragmentShader: fragment,
@@ -313,7 +314,7 @@ export const Carousel = ({
     };
   }, []);
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (placeholder) {
       const purgePlaceholder = () => {
         setShowPlaceholder(false);
@@ -328,7 +329,7 @@ export const Carousel = ({
         }
       };
     }
-  }, [placeholder]);
+  }, [placeholder]); */
 
   const onSwipeMove = useCallback(
     x => {
@@ -432,6 +433,19 @@ export const Carousel = ({
     return () => clearInterval(timer);
   }, [loaded, images, navigate]);
 
+  useEffect(() => {
+    animate(0, 1, {
+      duration: 1.2,
+      ease: t => Math.pow(t, 3),
+      onUpdate: value => {
+        if (material.current) {
+          material.current.uniforms.initialFade.value = value;
+          renderer.current.render(scene.current, camera.current);
+        }
+      },
+    });
+  }, []);
+
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div className={styles.carousel} onKeyDown={handleKeyDown} {...props}>
@@ -451,7 +465,7 @@ export const Carousel = ({
           >
             <canvas aria-hidden className={styles.canvas} ref={canvas} />
           </div>
-          {showPlaceholder && placeholder && (
+{/*           {showPlaceholder && placeholder && (
             <img
               aria-hidden
               className={styles.placeholder}
@@ -461,7 +475,7 @@ export const Carousel = ({
               alt=""
               role="presentation"
             />
-          )}
+          )} */}
         </div>{/*
         <button
           className={styles.button}

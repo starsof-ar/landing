@@ -29,13 +29,13 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
         return (
           <>
             <ModalTrigger modal={ModalCreateAccount}>
-              <ActionButton>GO TO STUDIO</ActionButton>
+              <ActionButton>STUDIO</ActionButton>
             </ModalTrigger>
             <ModalTrigger modal={ModalCreateAccount}>
-              <ActionButton>GO TO MAP</ActionButton>
+              <ActionButton>MAP</ActionButton>
             </ModalTrigger>
             <ModalTrigger modal={ModalCreateAccount}>
-              <ActionButton>SIGN IN</ActionButton>
+              <ActionButton>ACCOUNT</ActionButton>
             </ModalTrigger>
           </>
         );
@@ -57,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
               <ActionButton>GO TO MAP</ActionButton>
             </ModalTrigger>
             <ModalTrigger modal={ModalCreateAccount}>
-              <ActionButton>SIGN IN</ActionButton>
+              <ActionButton>GO TO ACCOUNT</ActionButton>
             </ModalTrigger>
           </>
         );
