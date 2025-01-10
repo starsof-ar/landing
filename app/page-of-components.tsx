@@ -1012,7 +1012,7 @@ const SAMPLE_TABLE_DATA_CHANGE_ME = [
           <br />
           <br />
           <CardDouble title="METHOD">
-            You’re at the very beginning of designing your operating system. How do you choose to start?
+            You’re at the very beginning of deg your operating system. How do you choose to start?
             <br />
             <br />
             <RadioButtonGroup

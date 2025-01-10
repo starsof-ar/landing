@@ -29,6 +29,9 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
         return (
           <>
             <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>GO TO STUDIO</ActionButton>
+            </ModalTrigger>
+            <ModalTrigger modal={ModalCreateAccount}>
               <ActionButton>GO TO MAP</ActionButton>
             </ModalTrigger>
             <ModalTrigger modal={ModalCreateAccount}>
@@ -47,6 +50,9 @@ const Navigation: React.FC<NavigationProps> = ({ children, logoHref, logoTarget,
             <Link href="/">
               <ActionButton>GO BACK</ActionButton>
             </Link>
+            <ModalTrigger modal={ModalCreateAccount}>
+              <ActionButton>GO TO STUDIO</ActionButton>
+            </ModalTrigger>
             <ModalTrigger modal={ModalCreateAccount}>
               <ActionButton>GO TO MAP</ActionButton>
             </ModalTrigger>

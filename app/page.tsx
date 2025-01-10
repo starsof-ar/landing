@@ -66,6 +66,8 @@ import { ModalProvider } from '@components/page/ModalContext';
 import ResponsiveTextDisplay from '@components/ResponsiveTextDisplay';
 import SubtitleHeader from '@components/SubtitleHeader';
 import { data } from 'app/_info/info';
+import { useMediaQuery } from './hooks/useMediaQuery';
+import styles from './page.module.css';
 
 
 
@@ -75,37 +77,61 @@ const Carousel = lazy(() =>
 
 
 
+const carouselImages = [
+  {
+    src: "/vr-midjourney.png",
+    alt: "Placeholder image 9",
+  },
+  {
+    src: "https://picsum.photos/seed/1/1920/900",
+    alt: "Placeholder image 1", 
+  },
+  {
+    src: "https://picsum.photos/seed/13/1920/900",
+    alt: "Placeholder image 13",
+  },
+  {
+    src: "https://picsum.photos/seed/8/1920/900",
+    alt: "Placeholder image 8",
+  },
+];
+
+
+
 export default function Page(props) {
+  const isDesktop = useMediaQuery('(min-width: 781px)');
+  
   return (
     <>
+      {(
+        <div className={styles.mobileCarouselWrapper}>
+          <Suspense fallback={null}>
+            <Carousel
+              placeholder="https://picsum.photos/seed/1/1920/900"
+              images={carouselImages}
+              width={1920}
+              height={900}
+              fadeBottom={true}
+            />
+          </Suspense>
+        </div>
+      )}
 
-      <Hero word="AUGMENT" />
+      <Hero word="STARSOF AR" />
 
-      <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
-        <Carousel
-          placeholder="https://picsum.photos/seed/1/1920/1080"
-          images={[
-            {
-              src: "https://picsum.photos/seed/1/1920/1080",
-              alt: "Placeholder image 1",
-            },
-            {
-              src: "https://picsum.photos/seed/13/1920/1080", 
-              alt: "Placeholder image 13",
-            },
-            {
-              src: "https://picsum.photos/seed/8/1920/1080",
-              alt: "Placeholder image 8",
-            },
-            {
-              src: "/vr-midjourney.png",
-              alt: "Placeholder image 9",
-            }
-          ]}
-          width={1920}
-          height={1080}
-        />
-      </Card>
+       {isDesktop && (
+        <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
+          <Suspense fallback={null}>
+            <Carousel
+              placeholder="https://picsum.photos/seed/1/1920/900"
+              images={carouselImages}
+              width={1920}
+              height={900}
+              fadeBottom={false}
+            />
+          </Suspense>
+        </Card>
+      )}
 
       <ResponsiveTextDisplay data={data} />
 

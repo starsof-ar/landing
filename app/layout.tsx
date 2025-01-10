@@ -20,11 +20,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <br />
               <DebugGrid /> {/* This is the grid that shows the layout of the page */}
               <DefaultActionBar />
-                      <Navigation
+              <Navigation
                 logo="✶"
                 logoRightAligned={true}
                 right={
                   <>
+                    <ModalTrigger modal={ModalCreateAccount}>
+                      <ActionButton>GO TO STUDIO</ActionButton>
+                    </ModalTrigger>
                     <ModalTrigger modal={ModalCreateAccount}>
                       <ActionButton>GO TO MAP</ActionButton>
                     </ModalTrigger>

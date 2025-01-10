@@ -28,7 +28,14 @@ function determineIndex(imageIndex, index, images, direction) {
   return finalIndex;
 }
 
-export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
+export const Carousel = ({
+  images,
+  width,
+  height,
+  placeholder,
+  fadeBottom = true,
+  ...props
+}) => {
   const [dragging, setDragging] = useState(false);
   const [imageIndex, setImageIndex] = useState(0);
   const [loaded, setLoaded] = useState(false);
@@ -50,6 +57,63 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
   const inViewport = useInViewport(canvas, true);
   const placeholderRef = useRef();
   const initSwipeX = useRef();
+  const [isLightTheme, setIsLightTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isBlueTheme, setIsBlueTheme] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const themeObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          setIsLightTheme(document.body.classList.contains('theme-light'));
+          setIsDarkTheme(document.body.classList.contains('theme-dark'));
+          setIsBlueTheme(document.body.classList.contains('theme-blue'));
+        }
+      });
+    });
+
+    themeObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    setIsLightTheme(document.body.classList.contains('theme-light'));
+    setIsDarkTheme(document.body.classList.contains('theme-dark'));
+    setIsBlueTheme(document.body.classList.contains('theme-blue'));
+
+    return () => themeObserver.disconnect();
+  }, []);
+
+  const getThemeBackgroundColor = useCallback(() => {
+    let rgbString;
+    if (isDarkTheme) {
+      rgbString = '0,0,0';
+    } else if (isBlueTheme) {
+      rgbString = '0,45,156';
+    } else {
+      rgbString = '255,255,255';
+    }
+    const rgb = rgbString.split(',').map(num => parseInt(num, 10) / 255);
+    return [...rgb, 1.0];
+  }, [isDarkTheme, isBlueTheme]);
+
+  useEffect(() => {
+    if (!renderer.current || !scene.current) return;
+    
+    const themeBackgroundRGB = getThemeBackgroundColor();
+    const themeColor = new Color(themeBackgroundRGB[0], themeBackgroundRGB[1], themeBackgroundRGB[2]);
+    
+    renderer.current.setClearColor(themeColor, 1.0);
+    scene.current.background = themeColor;
+
+    if (material.current) {
+      material.current.uniforms.themeBackground.value = themeBackgroundRGB;
+    }
+
+    renderer.current.render(scene.current, camera.current);
+  }, [getThemeBackgroundColor]);
 
   const currentImageAlt = images && images[imageIndex] 
     ? `Slide ${imageIndex + 1} of ${images.length}. ${images[imageIndex].alt}`
@@ -77,11 +141,17 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
     camera.current = new OrthographicCamera(...cameraOptions);
     scene.current = new Scene();
     renderer.current.setPixelRatio(2);
-    renderer.current.setClearColor(0x111111, 1.0);
+    
+    // Convert theme background color to hex
+    const themeBackgroundRGB = getThemeBackgroundColor();
+    const themeColor = new Color(themeBackgroundRGB[0], themeBackgroundRGB[1], themeBackgroundRGB[2]);
+    
+    renderer.current.setClearColor(themeColor, 1.0);
+    scene.current.background = themeColor;
+    
     renderer.current.setSize(width, height);
     renderer.current.domElement.style.width = '100%';
     renderer.current.domElement.style.height = 'auto';
-    scene.current.background = new Color(0x111111);
     camera.current.position.z = 1;
 
     return () => {
@@ -121,10 +191,12 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
           currentImage: { type: 't', value: textures[0] },
           nextImage: { type: 't', value: textures[1] },
           reduceMotion: { type: 'b', value: reduceMotion },
+          fadeBottom: { value: fadeBottom },
+          themeBackground: { value: getThemeBackgroundColor() },
         },
         vertexShader: vertex,
         fragmentShader: fragment,
-        transparent: false,
+        transparent: true,
         opacity: 1,
       });
 
@@ -148,7 +220,7 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
     return () => {
       mounted = false;
     };
-  }, [height, images, inViewport, loaded, reduceMotion, width]);
+  }, [height, images, inViewport, loaded, reduceMotion, width, fadeBottom]);
 
   const goToIndex = useCallback(
     ({ index, direction = 1 }) => {
@@ -347,7 +419,7 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
         break;
     }
   };
-//auto advance effect
+
   useEffect(() => {
     if (!loaded || !images?.length) return;
     
@@ -362,7 +434,7 @@ export const Carousel = ({ width, height, images, placeholder, ...rest }) => {
 
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-    <div className={styles.carousel} onKeyDown={handleKeyDown} {...rest}>
+    <div className={styles.carousel} onKeyDown={handleKeyDown} {...props}>
       <div className={styles.content}>
         <div
           className={styles.imageWrapper}
