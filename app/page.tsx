@@ -108,7 +108,7 @@ export default function Page(props) {
         <div className={styles.mobileCarouselWrapper}>
           <Suspense fallback={null}>
             <Carousel
-              //placeholder="https://picsum.photos/seed/1/1920/900"
+              placeholder="/bridge-gradient.png"
               images={carouselImages}
               width={1920}
               height={900}
@@ -125,7 +125,7 @@ export default function Page(props) {
         <Card title="augment intimacy" mode="left" maxWidth="80vw" centered>
           <Suspense fallback={null}>
             <Carousel
-              //placeholder="https://picsum.photos/seed/1/1920/900"
+              placeholder="/bridge-gradient.png"
               images={carouselImages}
               width={1920}
               height={900}
